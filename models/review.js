@@ -1,5 +1,14 @@
-/* Review:
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
-Body - string
+const ReviewSchema = new Schema({
+  body: String,
+  author: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+    },
+  ],
+});
 
-Author - object id  */
+module.exports = mongoose.model("Review", ReviewSchema);
