@@ -42,11 +42,11 @@ router.get("/forgot", (req, res, next) => {
 router.put("/forgot", (req, res, next) => {
   res.send("PUT /forgto");
 });
-/* GET  /reset-pw. */
+/* GET  /reset/:token. */
 router.get("/reset/:token", (req, res, next) => {
   res.send("GET /reset/:token");
 });
-/* PUT  /reset-pw. */
+/* PUT  /reset/:token. */
 router.put("/reset/:token", (req, res, next) => {
   res.send("PUT /reset/:token");
 });
