@@ -1,10 +1,10 @@
 const express = require("express");
+const { getPosts } = require("../controllers/posts");
 const router = express.Router();
+const catchAsync = require("../middleware/catchAsync");
 
 /* GET index /posts. */
-router.get("/", (req, res, next) => {
-  res.send("index/posts");
-});
+router.get("/", catchAsync(getPosts));
 
 /*Get posts new  /posts/new  *-creating route for rendering our post*/
 router.get("/new", (req, res, next) => {

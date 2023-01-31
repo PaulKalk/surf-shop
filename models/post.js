@@ -21,7 +21,7 @@ const PostSchema = new Schema({
     },
   ],
 });
-module.exports = mongoose.model("Post", "PostSchema");
+module.exports = mongoose.model("Post", PostSchema);
 /* Post - string
 Author - object (object id)
 Price - number

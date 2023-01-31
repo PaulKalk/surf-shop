@@ -2,7 +2,7 @@ const User = require("../models/user");
 const passport = require("passport");
 
 module.exports = {
-  //post register
+  //post /register
   async postRegister(req, res, next) {
     const newUser = new User({
       username: req.body.username,
@@ -13,7 +13,7 @@ module.exports = {
     await User.register(newUser, req.body.password);
     res.redirect("/");
   },
-  //post Login
+  //post /login
   postLogin(req, res, next) {
     passport.authenticate("local", {
       successRedirect: "/",
@@ -23,7 +23,7 @@ module.exports = {
 };
 
 module.exports.getLogout = (req, res, next) => {
-  // get Logout
+  // get /logout
   req.logout(function (err) {
     if (err) {
       return next(err);
