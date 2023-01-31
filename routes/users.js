@@ -1,7 +1,8 @@
 const express = require("express");
 const router = express.Router();
+const passport = require("passport");
 const { postRegister } = require("../controllers/users");
-
+const catchAsync = require("../middleware/catchAsync");
 router.get("/", (req, res, next) => {
   res.send("index");
 });
@@ -12,7 +13,7 @@ router.get("/register", (req, res, next) => {
 });
 
 /* POST users /register. */
-router.post("/register", postRegister);
+router.post("/register", catchAsync(postRegister));
 
 /* GET users /login. */
 router.get("/login", (req, res, next) => {
@@ -20,8 +21,22 @@ router.get("/login", (req, res, next) => {
 });
 
 /* POST  /login. */
-router.post("/login", (req, res, next) => {
-  res.send("POST /login");
+router.post(
+  "/login",
+  passport.authenticate("local", {
+    successRedirect: "/",
+    failureRedirect: "login",
+  })
+);
+
+/* GET  /logout. */
+router.get("/logout", (req, res, next) => {
+  req.logout(function (err) {
+    if (err) {
+      return next(err);
+    }
+  });
+  res.redirect("/");
 });
 
 /* GET  /profile. */

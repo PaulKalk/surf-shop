@@ -48,6 +48,8 @@ app.use(
     saveUninitialized: true,
   })
 );
+app.use(passport.initialize());
+app.use(passport.session());
 
 passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
