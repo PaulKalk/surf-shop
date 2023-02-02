@@ -1,5 +1,5 @@
 const express = require("express");
-const { getPosts } = require("../controllers/posts");
+const { getPosts, renderNewForm } = require("../controllers/posts");
 const router = express.Router();
 const catchAsync = require("../middleware/catchAsync");
 
@@ -7,9 +7,7 @@ const catchAsync = require("../middleware/catchAsync");
 router.get("/", catchAsync(getPosts));
 
 /*Get posts new  /posts/new  *-creating route for rendering our post*/
-router.get("/new", (req, res, next) => {
-  res.send("NEW/posts/new");
-});
+router.get("/new", renderNewForm);
 
 /*POST create posts/  *-creating route for rendering our post*/
 router.post("/", (req, res, next) => {
